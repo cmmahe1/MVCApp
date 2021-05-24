@@ -1,0 +1,59 @@
+﻿
+@{
+  ViewBag.Title = "Home Page";
+  var products = (List<WebApplication8.Models.Posts>)ViewData["Posts"];
+
+}
+<table class="table table-bordered table-striped" id="myTable">
+  @*Displays my project list headers from the database*@
+
+  <thead>
+    <tr>
+      <th>
+        Title
+      </th>
+      <th>
+        Body
+      </th>
+      <th>User ID</th>
+      <th>Delete Post</th>
+    </tr>
+
+  </thead>
+  @*Displays my employee list from the database*@
+  <tbody>
+    @foreach (var item in products)
+    { // Loop through List with foreach
+    <tr>
+      <td class="item-col">
+        <span>
+          @Html.DisplayFor(Emp1 => @item.title)
+        </span>
+      </td>
+      <td class="item-col">
+        <span class="unit_value">
+          @Html.DisplayFor(Emp1 => @item.body)
+        </span>
+      </td>
+      <td class="item-col">
+        <span class="total_product_quantity">
+          @Html.ActionLink(@item.user_id.ToString(), "About", "Home", new { userID = @item.user_id }, null)
+        </span>
+      </td>
+      <td class="item-col">
+        <span class="total_product_quantity">
+          @Html.ActionLink("Delete", "Delete", "Home", new { userID = @item.user_id, postid = item.Id }, null)
+        </span>
+      </td>
+      <td class="item-col">
+        <span class="total_product_quantity">
+          @Html.ActionLink("Create", "CreateNewPost", "Home", new { userID = @item.user_id }, null)
+        </span>
+      </td>
+    </tr>
+    }
+
+  </tbody>
+
+
+</table>

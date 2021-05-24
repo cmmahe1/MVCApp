@@ -1,0 +1,70 @@
+﻿
+@{
+  ViewBag.Title = "ToDo";
+  var toDos = (List<WebApplication8.Models.ToDO>)ViewData["toDos"];
+  var pageNum = (int)ViewData["pageNum"];
+
+}
+
+<h2>Users</h2>
+
+
+<div>
+  <nav aria-label="Page navigation example">
+    <ul class="pagination pull-left">
+      @for (int i = 1; i <= pageNum; i++)
+      {
+        <li @*class="@(i == Model.CurrentPage ? "page-item active" : "page-item")"*@>
+          <a class="page-link" href="@Url.Action("ToDo", new { page = i })">@i</a>
+        </li>
+
+      }
+    </ul>
+  </nav>
+  <p><a href="@Url.Action("CreateNewUser","Home")" class="btn btn-primary btn-lg pull-right">Create User</a></p>
+</div>
+<table class="table table-bordered table-striped" id="myTable">
+  @*Displays my project list headers from the database*@
+
+  <thead>
+    <tr>
+      <th>
+        Name
+      </th>
+      <th>
+        Email
+      </th>
+      <th>
+        Gender
+      </th>
+    </tr>
+
+  </thead>
+  @*Displays my employee list from the database*@
+  <tbody>
+    @foreach (var item in toDos)
+    { // Loop through List with foreach
+      <tr>
+        <td class="item-col">
+          <span>
+            @Html.DisplayFor(Emp1 => @item.User_id)
+          </span>
+        </td>
+        <td class="item-col">
+          <span class="unit_value">
+            @Html.DisplayFor(Emp1 => @item.Title)
+          </span>
+        </td>
+        <td class="item-col">
+          <span class="total_product_quantity">
+            @Html.DisplayFor(Emp1 => @item.Completed)
+          </span>
+        </td>
+        
+      </tr>
+    }
+
+  </tbody>
+
+
+</table>

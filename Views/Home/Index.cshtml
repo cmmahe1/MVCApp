@@ -1,0 +1,27 @@
+﻿@{
+  ViewBag.Title = "Home Page";
+  var products = (List<WebApplication8.Models.Posts>)ViewData["Posts"];
+  var pageNum = (int)ViewData["pageNum"];
+
+}
+
+<div class="row">
+  <div>
+    <nav aria-label="Page navigation example">
+      <ul class="pagination pull-left">
+        @for (int i = 1; i <= pageNum; i++)
+        {
+          <li @*class="@(i == Model.CurrentPage ? "page-item active" : "page-item")"*@>
+            <a class="page-link" href="@Url.Action("Index", new { page = i })">@i</a>
+          </li>
+
+        }
+      </ul>
+    </nav>
+  </div>
+
+  <div>
+    @{ Html.RenderPartial("_ViewPosts", products);}
+
+  </div>
+</div>
